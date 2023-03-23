@@ -32,7 +32,9 @@ class Game:
         # This is loop, when finish, come back to start        
         while True:
 
-            self.clock.tick(30)
+            self.screen.fill((0, 0, 0))
+
+            self.clock.tick(10)
 
             if len(self.snake.parts) == self.limit:
                 print("Ganhou o jogo.")
@@ -56,7 +58,7 @@ class Game:
 
                     if event.type == pygame.K_LEFT:
                         self.snake.move(Direction.LEFT.value)
-                        
+
             self.snake.update()
             self.snake.show(self.screen, pygame)
 

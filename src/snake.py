@@ -26,17 +26,16 @@ class Snake:
             self.parts.remove(part)
 
     def update(self):
-
         self.last = self.head
 
-        if self.direction == "Direita":
+        if self.direction == Direction.RIGHT.value:
             self.head.x += 20
-        if self.direction == "Esquerda":
+        if self.direction == Direction.LEFT.value:
             self.head.x -= 20
-        if self.direction == "Cima":
-            self.head.y += 20
-        if self.direction == "Baixo":
+        if self.direction == Direction.UP.value:
             self.head.y -= 20
+        if self.direction == Direction.DOWN.value:
+            self.head.y += 20
 
         for index in range(1, len(self.parts)):
             part = self.parts[index]
@@ -44,7 +43,7 @@ class Snake:
             part.y = self.last.y
             self.parts[index] = part
             self.last = part
-    
+   
     def show(self, screen, pygame):
         for part in self.parts:
             pygame.draw.rect(screen, (0, 255, 0), (part.x, part.y, 20, 20))
