@@ -10,19 +10,21 @@ class Game:
 
     def __init__(self):
         # Declaring variables
-        self.height = 1000
-        self.width = 1000
+        self.width = 1360
+        self.height = 760
 
         # Setup basic informations
         pygame.init()
 
-        self.screen = pygame.display.set_mode((self.height, self.width))
+        self.screen = pygame.display.set_mode((self.width, self.height))
 
-        # This method it's to limit framerate to 60
+        # This method it's to limit framerate to 10
         self.clock = pygame.time.Clock()
 
         self.snake = Snake(self.height, self.width)
-        self.apple = Apple()
+        self.apple = Apple(self.height, self.width)
+
+        self.limit = 1
 
     # This method is to start runnable
     def run(self):
@@ -42,15 +44,27 @@ class Game:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
                         self.snake.move(Direction.UP.value)
+                        if self.limit == 1:
+                            break
+                        self.limit += 1
 
                     if event.key == pygame.K_DOWN:
                         self.snake.move(Direction.DOWN.value)
+                        if self.limit == 1:
+                            break
+                        self.limit += 1
 
                     if event.key == pygame.K_RIGHT:
                         self.snake.move(Direction.RIGHT.value)
+                        if self.limit == 1:
+                            break
+                        self.limit += 1
 
                     if event.key == pygame.K_LEFT:
                         self.snake.move(Direction.LEFT.value)
+                        if self.limit == 1:
+                            break
+                        self.limit += 1
 
             self.snake.update()
             self.snake.show(self.screen, pygame)
